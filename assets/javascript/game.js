@@ -14,12 +14,13 @@ $(".character").on("click", function(){
 	
 	playerChosen = true;
 	$(this).detach();
-	$(".characterDiv").append(player);
+	$(".heroDiv").append(player);
+	$(".heroDiv figure").addClass("hero");
 	appendEnemies();
 });
 
 function appendEnemies(){
-	$(".enemiesDiv").append($(".playersToChoose"));
+	$(".enemiesDiv").append($(".character"));
 	selectEnemy();
 }
 
@@ -34,5 +35,12 @@ function selectEnemy(){
 		enemyChosen = true;
 		$(this).detach();
 		$(".defenderDiv").append(enemy);
+		$(".defenderDiv figure").addClass("villain");
 	});
 }
+
+function activateAttack(){
+	var attackPower = $(".hero").data("attack");
+	return attackPower;
+	
+} console.log (activateAttack());
