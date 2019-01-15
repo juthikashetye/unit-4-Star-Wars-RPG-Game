@@ -1,7 +1,13 @@
-.characterDiv {
+/*.characterDiv {
 	height: 200px;
+}*/
+.character {
+	display: inline-block;
 }
-
+figure {
+	display: inline-block;
+	margin: 2px;
+}
 img {
 	width: 250px;
 	height: 200px;
