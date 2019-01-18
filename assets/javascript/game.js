@@ -45,8 +45,8 @@ function selectEnemy(){
 
 
 function doubleAttack(){
-	 attackPower = parseInt($(".hero").data("attack"))*2;
-	 $(".hero").attr("data-attack",attackPower);
+	 attackPower = parseInt($(".hero").data("attack")) + parseInt($(".hero").attr("data-attack"));
+	 $(".hero").data("attack",attackPower);
 	
 }
 
