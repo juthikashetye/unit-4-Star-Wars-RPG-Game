@@ -6,6 +6,7 @@ var enemy = "";
 var attackPower = $(".hero").data("attack");
 var counterAttackPower = $(".villain").data("counterattack");
 var heroHp = $(".hero .health").text();
+var villainHp = $(".villain .health").text();
 
 $(".character").on("click", function(){
 	
@@ -42,12 +43,13 @@ function selectEnemy(){
 	});
 }
 
+
 function doubleAttack(){
 	 attackPower = parseInt($(".hero").data("attack"))*2;
 	 $(".hero").attr("data-attack",attackPower);
 	
 }
-doubleAttack();
+
 
 function reduceHeroHp(){
 	 heroHp = parseInt($(".hero .health").text());
@@ -56,4 +58,22 @@ function reduceHeroHp(){
 	 $(".hero .health").text(heroHp);
 	
 }
-reduceHeroHp();
+
+function reduceVillainHp(){
+	villainHp = parseInt($(".villain .health").text());
+	attackPower = parseInt($(".hero").data("attack"));
+	villainHp = villainHp - attackPower;
+	$(".villain .health").text(villainHp);
+}
+
+
+function attack(){
+	$("button").on("click", function(){
+		
+		reduceVillainHp();
+		reduceHeroHp();
+		doubleAttack();
+
+	})
+}
+attack();
