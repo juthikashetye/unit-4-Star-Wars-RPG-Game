@@ -3,6 +3,9 @@ var enemyChosen = false;
 var yourPlayer = "";
 var enemiesTochoose = "";
 var enemy = "";
+var attackPower = $(".hero").data("attack");
+var counterAttackPower = $(".villain").data("counterattack");
+var heroHp = $(".hero .health").text();
 
 $(".character").on("click", function(){
 	
@@ -39,8 +42,18 @@ function selectEnemy(){
 	});
 }
 
-function activateAttack(){
-	var attackPower = $(".hero").data("attack");
-	return attackPower;
+function doubleAttack(){
+	 attackPower = parseInt($(".hero").data("attack"))*2;
+	 $(".hero").attr("data-attack",attackPower);
 	
-} console.log (activateAttack());
+}
+doubleAttack();
+
+function reduceHeroHp(){
+	 heroHp = parseInt($(".hero .health").text());
+	 counterAttackPower = parseInt($(".villain").data("counterattack"));
+	 heroHp = heroHp - counterAttackPower;
+	 $(".hero .health").text(heroHp);
+	
+}
+reduceHeroHp();
