@@ -78,10 +78,16 @@ function reduceVillainHp(){
 }
 
 function attack(){
-	$("button").on("click", function(){	
-		reduceVillainHp();
-		reduceHeroHp();
-		doubleAttack();
+	$("button").on("click", function(){
+		heroHp = parseInt($(".hero .health").text());
+		
+		if (heroHp < 1) {
+			return null;
+		}else 
+			reduceVillainHp();
+			reduceHeroHp();
+			doubleAttack();
+			
 	})
 }
 attack();
