@@ -35,14 +35,15 @@ function selectEnemy(){
 
 		if (enemyChosen == true) {
 		return null;
-	}
-		enemyChosen = true;
+	}else{
+
 		$(this).detach();
 		$(".defenderDiv").append(enemy);
 		$(".defenderDiv figure").addClass("villain");
+	}
+		enemyChosen = true;
 	});
 }
-
 
 function doubleAttack(){
 	 attackPower = parseInt($(".hero").data("attack")) + parseInt($(".hero").attr("data-attack"));
@@ -50,13 +51,18 @@ function doubleAttack(){
 	
 }
 
-
 function reduceHeroHp(){
 	 heroHp = parseInt($(".hero .health").text());
 	 counterAttackPower = parseInt($(".villain").data("counterattack"));
-	 heroHp = heroHp - counterAttackPower;
-	 $(".hero .health").text(heroHp);
-	
+	 
+	 if (!isNaN(counterAttackPower)) {
+	 	heroHp = heroHp - counterAttackPower;
+	 	$(".hero .health").text(heroHp); 
+	 }
+	 else {
+	 	heroHp = parseInt($(".hero .health").text());
+	}
+
 }
 
 function reduceVillainHp(){
@@ -64,16 +70,18 @@ function reduceVillainHp(){
 	attackPower = parseInt($(".hero").data("attack"));
 	villainHp = villainHp - attackPower;
 	$(".villain .health").text(villainHp);
+
+	if (villainHp <= 0) {
+	 	$(".defenderDiv").empty();
+	 	enemyChosen = false;
+	 }
 }
 
-
 function attack(){
-	$("button").on("click", function(){
-		
+	$("button").on("click", function(){	
 		reduceVillainHp();
 		reduceHeroHp();
 		doubleAttack();
-
 	})
 }
 attack();
